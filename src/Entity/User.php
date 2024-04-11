@@ -37,7 +37,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $firstName = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $lastName = null;
+    private ?string $familyName = null;
 
     /**
      * @var Collection<int, Post>
@@ -137,14 +137,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getLastName(): ?string
+    public function getFamilyName(): ?string
     {
-        return $this->lastName;
+        return $this->familyName;
     }
 
-    public function setLastName(string $lastName): static
+    public function setFamilyName(string $familyName): static
     {
-        $this->lastName = $lastName;
+        $this->familyName = $familyName;
 
         return $this;
     }

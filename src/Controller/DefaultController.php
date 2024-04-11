@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -9,9 +10,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class DefaultController extends AbstractController{
 
     #[Route('/', name: 'default_home', methods: ['GET'])]
-    public function home () : Response
+    public function home (PostRepository $postRepository) : Response
     {
-        return $this->render('default/home.html.twig');
+
+        #2
+        $posts = $postRepository->findAll();
+
+        return $this->render('default/home.html.twig',
+            ['posts' => $posts]);
+
     }
     #[Route('/contact', name: 'default_contact', methods: ['GET'])]
     public function contact () : Response
@@ -20,11 +27,19 @@ class DefaultController extends AbstractController{
     }
 
     #[Route('/{slug}', name: 'default_category', methods: ['GET'])]
-    public function category($slug) : Response
+    public function category(Category $category): Response
     {
-        return $this->render('default/home.html.twig');
-    }
+        # Méthode 1
+        # $category = $categoryRepository->findOneBy(['slug' => $slug]);
 
+        # Méthode 2
+        # $category = $categoryRepository->findOneBySlug($slug);
+        # dd($category);
+
+        return $this->render('default/category.html.twig', [
+        'category' => $category
+    ]);
+    }
     /**
      * @param $category
      * @param $slug
