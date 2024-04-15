@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            {% for label, messages in  app.flashes %}
+                {% for message in  messages %}
+                    <div class="col-5 mx-auto alert-{{ label }}">
+                        <hr>
+                        <p class="alert alert">{{ label }}</p>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
