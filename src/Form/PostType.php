@@ -31,6 +31,7 @@ class PostType extends AbstractType
             ->add('content')
 
             ->add('publishedAt', null, [
+                'empty_data' => '\DateTimeImmutable',
                 'widget' => 'single_text',
             ])
             ->add('categories', EntityType::class, [

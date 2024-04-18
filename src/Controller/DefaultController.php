@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Entity\Post;
 use App\Repository\CategoryRepository;
 use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,7 +15,6 @@ class DefaultController extends AbstractController
     #[Route('/', name: 'default_home', methods: ['GET'])]
     public function home(PostRepository $postRepository) : Response
     {
-
 
         #1. Récupération des derniers articles
         $posts = $postRepository->findBy([], ['publishedAt' => 'DESC']);
@@ -52,8 +52,8 @@ class DefaultController extends AbstractController
      * https://localhost:/categorie/alias
      */
     #[Route('/{category}/{slug}', name: 'default_post', methods: ['GET'], priority:1)]
-    public function post($category, $slug) : Response
+    public function post(Post $post) : Response
     {
-        return $this->render('default/home.html.twig');
+        return $this->render('default/post.html.twig', ['post'=>$post]);
     }
 }

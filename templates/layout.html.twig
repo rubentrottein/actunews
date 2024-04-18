@@ -43,13 +43,14 @@
     .replace(/\s+/g, '-') // replace spaces with hyphens
     .replace(/-+/g, '-'); // remove consecutive hyphens
     }
-
+    /** Exemples :
     console.log(slugify("The Quick Brown Fox Jumps Over The Lazy Dog! "))
     // "the-quick-brown-fox-jumps-over-the-lazy-dog"
 
     console.log(slugify("söme stüff with áccènts"))
     // "some-stuff-with-accents"
-    </script>
+    /**/
+</script>
 {% endblock %}
 
 {% block body %}

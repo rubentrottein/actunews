@@ -50,8 +50,9 @@ class Post
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $deletedAt = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $publishedAt = null;
+    #[ORM\Column(nullable: false)]
+    #[Assert\NotBlank(message: 'Veuillez saisir une date de publication')]
+    private ?\DateTimeImmutable $publishedAt;
 
     /**
      * @var Collection<int, Category>
@@ -172,7 +173,7 @@ class Post
         return $this->publishedAt;
     }
 
-    public function setPublishedAt(\DateTimeImmutable $publishedAt): static
+    public function setPublishedAt(?\DateTimeImmutable $publishedAt): static
     {
         $this->publishedAt = $publishedAt;
 
